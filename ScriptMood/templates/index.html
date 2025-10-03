@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Script Mood Predictor</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='logo-favicon.ico') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) Library -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({
+        duration: 1000,   // animation duration in ms
+        once: true,       // whether animation happens only once
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-gradient-to-r from-blue-50 to-purple-100 min-h-screen flex flex-col justify-between font-sans">
+
+  <!-- Website Title -->
+  <header class="text-center mt-12" data-aos="fade-down">
+    <h2 class="text-4xl font-extrabold text-gray-800 tracking-tight mb-2">
+      <span class="font-['Yatra_One'] text-purple-700">Emotion Predictor</span> for Movies
+    </h2>
+    <p class="text-gray-600" data-aos="fade-up" data-aos-delay="200">Welcome to ScriptMood website.</p>
+  </header>
+
+  <!-- Text Area Form -->
+  <main class="flex-grow flex items-center justify-center">
+    <div class="w-full max-w-3xl bg-white rounded-2xl shadow-lg p-8 md:p-12" 
+         data-aos="zoom-in" data-aos-delay="400">
+      <form action="{{ url_for('predict') }}" method="POST" class="space-y-6">
+        <textarea 
+          class="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 resize-none" 
+          name="message" rows="8" 
+          placeholder="Enter Your Script (100 words only) Here..." 
+          required
+          data-aos="fade-up"
+          data-aos-delay="600"></textarea>
+
+        <button 
+          type="submit" 
+          class="w-full py-3 px-6 bg-purple-600 text-white rounded-xl font-semibold shadow-md hover:bg-purple-700 transition"
+          data-aos="fade-up"
+          data-aos-delay="800">
+          🎬 Predict
+        </button>
+      </form>
+    </div>
+  </main>
+ 
+<div class="ml-container" style="text-align: center; margin: 20px;">
+    <button class="my-cta-button-video" onclick="toggleVideo()" 
+        style="padding: 10px 20px; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        🎥 Watch the Video
+    </button>
+</div>
+
+<div id="videoContainer" style="display: none; 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.7); display: flex; 
+    justify-content: center; align-items: center; z-index: 9999;">
+    
+    <div style="text-align: center; background-color: #fff; padding: 20px; border-radius: 10px;">
+        <video id="projectVideo" controls 
+            style="max-width: 90vw; max-height: 80vh; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+            <source src="{{ url_for('static', filename='Watch the Video.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <br>
+        <button class="close-video-button" onclick="toggleVideo()" 
+            style="margin-top: 10px; padding: 8px 15px; font-size: 14px; background-color: #dc3545; color: white; border: none; border-radius: 5px; cursor: pointer;">
+            ❌ Close Video
+        </button>
+    </div>
+</div>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-white border-t shadow-inner" data-aos="fade-up" data-aos-delay="1000">
+    <div class="flex justify-center space-x-6 mb-3">
+      <a target="_blank" href="https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction" class="text-gray-700 hover:text-purple-600 transition">
+        <i class="fab fa-github fa-xl"></i>
+      </a>
+      <a target="_blank" href="https://www.linkedin.com/in/sivasankar-rachamadugu/" class="text-gray-700 hover:text-purple-600 transition">
+        <i class="fab fa-linkedin fa-xl"></i>
+      </a>
+    </div>
+    <p class="text-gray-500 text-sm">Made with ❤️ by Sivasankar.</p>
+  </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const videoContainer = document.getElementById('videoContainer');
+    const video = document.getElementById('projectVideo');
+
+    // Ensure video container is hidden on page load
+    videoContainer.style.display = 'none';
+
+    window.toggleVideo = function() {
+        if (videoContainer.style.display === 'flex') {
+            video.pause();
+            video.currentTime = 0; // reset video
+            videoContainer.style.display = 'none';
+        } else {
+            videoContainer.style.display = 'flex';
+            video.play();
+            video.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+});
+</script>
+
+</body>
+</html>

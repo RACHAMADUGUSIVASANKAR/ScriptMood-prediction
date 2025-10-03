@@ -1,0 +1,169 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: #f8fafc; /* subtle light background */
+    color: #111827;
+}
+
+/* ===================== */
+/* Animated Gradient Background (Header & Footer) */
+.container, .footer {
+    background: linear-gradient(45deg, #6dcbd9, #e16060, #65d895, #ef68b5, #656ee0, #e4dd73);
+    background-size: 400% 400%;
+    animation: gradientShift 12s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===================== */
+/* Title */
+.container {
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom-left-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: fadeInDown 1s ease;
+}
+
+.container-heading {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.heading_font {
+    color: #ffffff;
+    font-family: 'Yatra One', cursive;
+    font-size: 2.5rem;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+}
+
+.description p {
+    font-style: italic;
+    font-size: 1rem;
+    margin: 8px 0 0;
+    color: #fefefe;
+}
+
+/* ===================== */
+/* Form */
+.ml-container {
+    margin: 40px auto;
+    width: 90%;
+    max-width: 700px;
+    animation: fadeInUp 1.2s ease;
+}
+
+.message-box {
+    width: 100%;
+    padding: 16px;
+    border: none;
+    border-radius: 1rem;
+    background: #f3f4f6;
+    font-size: 1rem;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.message-box:focus {
+    outline: none;
+    background: #ffffff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ===================== */
+/* Predict Button */
+.my-cta-button {
+    margin-top: 20px;
+    background: #6c63ff;
+    border: none;
+    border-radius: 2rem;
+    padding: 14px 40px;
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 16px rgba(108, 99, 255, 0.4);
+    transition: all 0.3s ease;
+}
+
+.my-cta-button:hover {
+    transform: scale(1.05);
+    background: #574bff;
+}
+
+.my-cta-button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 6px rgba(108, 99, 255, 0.3);
+}
+
+/* ===================== */
+/* Results Section */
+.results {
+    margin: auto;
+    padding: 30px;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    animation: fadeInZoom 1.2s ease;
+}
+
+.result-prediction {
+    color: #6c63ff;
+    font-weight: 700;
+    font-size: 1.8rem;
+}
+
+
+/* ===================== */
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 20px;
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    margin-top: auto;
+}
+
+.contact-icon {
+    color: #ffffff;
+    padding: 10px;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-icon:hover {
+    color: #000000;
+    transform: translateY(-4px) scale(1.1);
+}
+
+.footer-description {
+    margin: 8px 0 0;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+/* ===================== */
+/* Animations */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInZoom {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}

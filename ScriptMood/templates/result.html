@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Movie Genre Predictor</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='spam-favicon.ico') }}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
+
+  <!-- AOS (Animate on Scroll) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      AOS.init({
+        duration: 1000,
+        once: true,
+      });
+    });
+  </script>
+</head>
+
+<body class="bg-gradient-to-r from-purple-50 to-blue-100 min-h-screen flex flex-col justify-between">
+
+  <!-- Title -->
+  <header class="text-center mt-12" data-aos="fade-down">
+    <h2 class="text-4xl font-extrabold text-gray-800">
+      <span class="font-['Yatra_One'] text-purple-700">Emotion Predictor</span> for Movies
+    </h2>
+    <p class="text-gray-600 mt-2">Here’s what we think your script belongs to 👇</p>
+  </header>
+
+  <!-- Prediction Card -->
+  <main class="flex-grow flex items-center justify-center">
+    <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10 text-center" data-aos="zoom-in">
+      
+      {% if prediction==0 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-gray-700">Miscellaneous</span></h1>
+      {% elif prediction==1 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-red-600">Action</span></h1>
+      {% elif prediction==2 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-orange-500">Adventure</span></h1>
+      {% elif prediction==3 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-yellow-500">Comedy</span></h1>
+      {% elif prediction==4 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-purple-600">Drama</span></h1>
+      {% elif prediction==5 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-red-700">Horror</span></h1>
+      {% elif prediction==6 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-pink-500">Romance</span></h1>
+      {% elif prediction==7 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-blue-600">Sci-Fi</span></h1>
+      {% elif prediction==8 %}
+        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-green-600">Thriller</span></h1>
+      {% endif %}
+
+      <!-- Try Again Button -->
+      <a href="/" 
+         class="mt-6 inline-block px-6 py-3 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition" 
+         data-aos="fade-up" data-aos-delay="400">
+        🔄 Try Another Script
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="text-center py-6 bg-white border-t shadow-inner" data-aos="fade-up" data-aos-delay="800">
+    <div class="flex justify-center space-x-6 mb-3">
+      <a target="_blank" href="https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction" class="text-gray-700 hover:text-purple-600 transition">
+        <i class="fab fa-github fa-xl"></i>
+      </a>
+      <a target="_blank" href="https://www.linkedin.com/in/sivasankar-rachamadugu/" class="text-gray-700 hover:text-purple-600 transition">
+        <i class="fab fa-linkedin fa-xl"></i>
+      </a>
+    </div>
+    <p class="text-gray-500 text-sm">Made with ❤️ by Sivasankar.</p>
+  </footer>
+
+</body>
+</html>
