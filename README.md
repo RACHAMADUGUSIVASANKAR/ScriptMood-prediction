@@ -24,10 +24,9 @@ ScriptMood-prediction/
 - Training dataset from Kaggle.
 - Contains 22,000+ movie reviews and their genres.
 - Example:
-              **review_text**	              **genre**
-             "A thrilling adventure!"	       Action
-             "Hilarious comedy scenes"	     Comedy
-             "Heartwarming story"	           Romance
+             "A thrilling adventure!"	   -    Action
+             "Hilarious comedy scenes"	 -   Comedy
+             "Heartwarming story"	       -   Romance
 
 👉 Used only for training. Not required for predictions in the web app.
 
