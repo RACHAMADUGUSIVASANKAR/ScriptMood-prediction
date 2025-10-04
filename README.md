@@ -1,9 +1,16 @@
-🎬 ScriptMood – Movie Genre Prediction App
 
-A Flask web application that predicts the genre of a movie based on its description or script snippet.
-It uses Machine Learning (Naive Bayes + CountVectorizer) trained on a Kaggle dataset of 22,000+ movie reviews.
+# 🎬 ScriptMood – Emotion Prediction App
 
-📂 Project Structure
+- A Flask web application that predicts the genre of a movie based on its description or script snippet.  
+- It uses Machine Learning (Naive Bayes + CountVectorizer) trained on a Kaggle dataset of 22,000+ movie reviews.
+
+---
+
+```markdown
+
+## 📂 Project Structure
+
+
 ScriptMood-prediction/
 │── app.py                     # Flask web app
 │── requirements.txt           # Dependencies
@@ -17,110 +24,156 @@ ScriptMood-prediction/
 │   ├── index.html             # Input page
 │   └── result.html            # Prediction result page
 │── .gitattributes             # Git settings
+```
 
-🗂️ Explanation of Key Files
+---
 
-**1. kaggle_movie_train.csv**
-- Training dataset from Kaggle.
+## 🗂️ Key Components
+
+### `kaggle_movie_train.csv`
 - Contains 22,000+ movie reviews and their genres.
-- Example:
-             "A thrilling adventure!"	   -    Action
-             "Hilarious comedy scenes"	 -   Comedy
-             "Heartwarming story"	       -   Romance
+- Training dataset from Kaggle.
+- Used only for training, not required during prediction.
+- Examples:
+```
+review_text                       	genre
+"A thrilling adventure!"           	Action
+"Hilarious comedy scenes"	        Comedy
+"Heartwarming story"	            Romance
+```
 
-👉 Used only for training. Not required for predictions in the web app.
-
-**2. cv-transform.pkl**
+---
+### `cv-transform.pkl`
 - Saved CountVectorizer (text → numbers).
 - Learns the vocabulary of all movie reviews.
 - Converts user input (e.g., "A scary haunted house") → a vector of word counts.
 
-**3. movie-genre-mnb-model.pkl**
-- Saved Multinomial Naive Bayes classifier.
+### `movie-genre-mnb-model.pkl`
+- Trained Multinomial Naive Bayes classifier.
 - Learns patterns from the training dataset.
 - Uses the CountVectorizer’s numeric features to predict genres.
 
-**4. app.py**
-- Flask application file.
-- Loads .pkl files (vectorizer + trained model).
-- Provides routes:
-- / → Home page (form to enter movie text)
-- /predict → Shows predicted genre
+### `app.py`
+- Flask backend.
+- Loads `.pkl` files (vectorizer + trained model).
+- Routes:
+  - `/` → Home page (form to enter movie text)
+  - `/predict` → Genre prediction result
 
-**5. templates/ folder**
-- index.html → Form to enter text.
-- result.html → Displays prediction result.
-  
-**6. Procfile**
-- Needed for Heroku deployment.
+### `templates/`
+- `index.html` → Input form
+- `result.html` → Displays prediction
+
+### `Procfile`
+- Required for Heroku deployment:
 - Contains:
-             web: gunicorn app:app
+  ```
+  web: gunicorn app:app
+  ```
 
- **⚙️ Installation (Run Locally)**
- 
-**Step 1: Clone the repo**
-         git clone https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction.git
-         cd ScriptMood-prediction
+---
 
-**Step 2: Create a virtual environment**
-         python -m venv venv
-Activate it:
-         venv\Scripts\activate
-  
-**Step 3: Install dependencies**
-         pip install --upgrade pip
-         pip install -r requirements.txt
-- (If Flask or scikit-learn are missing, install them manually:)
-         pip install Flask scikit-learn gunicorn
-  
-**Step 4: Run the app locally**
-          python app.py
+###📊 Workflow Diagram
+```
+ Kaggle Dataset (CSV) ──> Preprocessing & Training ──> Model + Vectorizer (.pkl)
+        |                                                   |
+        v                                                   v
+    Training Script                                    Flask App (app.py)
+                                                           |
+                                                           v
+                                                   User enters text
+                                                           |
+                                                           v
+                                                   Predicted Genre
+```
+---
 
-Now open http://127.0.0.1:5000
+## ⚙️ Installation (Run Locally)
 
-  **🚀 Deploying to Heroku**
-**Step 1: Install Heroku CLI**
-👉 Download here : https://devcenter.heroku.com/articles/heroku-cli
+```bash
+# Step 1: Clone the repo
+git clone https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction.git
+cd ScriptMood-prediction
 
-**Step 2: Login to Heroku**
-           heroku login
+# Step 2: Create a virtual environment
+python -m venv venv
+venv\Scripts\activate  # On Windows
 
-**Step 3: Create a new Heroku app**
-           heroku create your-app-name
+# Step 3: Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+pip install Flask scikit-learn gunicorn  # If needed
 
-**Step 4: Push code to Heroku**
-          git add .
-          git commit -m "Deploy app"
-          git push heroku main
+# Step 4: Run the app
+python app.py
+```
 
-**Step 5: Open app in browser**
-          heroku open
+Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-          
-**🧠 How the Model Works**
+---
 
-**1. Training Phase**
-- Load dataset (kaggle_movie_train.csv)
+## 🚀 Deploying to Heroku
+
+1. [Install Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)  
+2. Login: `heroku login`  
+3. Create app: `heroku create your-app-name`  
+4. Push code:
+   ```bash
+   git add .
+   git commit -m "Deploy app"
+   git push heroku main
+   ```
+5. Open app: `heroku open`
+
+---
+
+## 🧠 How the Model Works
+
+### Training Phase
 - Preprocess text (lowercase, remove stopwords, punctuation, stemming)
-- Convert text → numbers using CountVectorizer
-- Train Naive Bayes classifier on these vectors
-- Save trained model + vectorizer as .pkl files
+- Vectorize using CountVectorizer
+- Train Naive Bayes classifier
+- Save model and vectorizer as `.pkl` files
 
-**2. Prediction Phase (app.py)**
-- User enters text
-- Text → vector (via cv-transform.pkl)
-- Model (movie-genre-mnb-model.pkl) predicts genre
-- Result shown on webpage
+### Prediction Phase
+- User input → vector (via `cv-transform.pkl`)
+- Model (`movie-genre-mnb-model.pkl`) predicts genre
+- Result displayed on webpage
 
+---
 
-**🙌 Contribution**
+### 📝 Example Prediction
 
-Feel free to fork this repo and try:
-- Using a bigger dataset
-- Trying other ML models (Logistic Regression, SVM, BERT)
-- Adding more genres
+Input (user):
+```
+"A heartwarming love story set in Paris."
+```
+Output (app):
+```
+Predicted Genre: Romance
+```
+---
 
-**👨‍💻 Author**
+## 🙌 Contribution
 
-Sivasankar R
-AI & ML Engineering Student
+Feel free to fork and enhance:
+- Use a larger dataset
+- Experiment with other ML models (Logistic Regression, SVM, BERT)
+- Expand genre coverage
+
+---
+
+## 👨‍💻 Author
+
+**Sivasankar R**  
+AI & ML Engineering Student  
+GitHub: [RACHAMADUGUSIVASANKAR](https://github.com/RACHAMADUGUSIVASANKAR)
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+```
+
+Let me know if you'd like this formatted for a GitHub Pages site or want badges (e.g., build status, license, Python version) added!
