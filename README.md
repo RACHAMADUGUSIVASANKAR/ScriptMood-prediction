@@ -113,18 +113,6 @@ Now open http://127.0.0.1:5000
 - Model (movie-genre-mnb-model.pkl) predicts genre
 - Result shown on webpage
 
-**📊 Workflow Diagram**
-
- Kaggle Dataset (CSV) ──> Preprocessing & Training ──> Model + Vectorizer (.pkl)
-        |                                                   |
-        v                                                   v
-    Training Script                                    Flask App (app.py)
-                                                           |
-                                                           v
-                                                   User enters text
-                                                           |
-                                                           v
-                                                   Predicted Genre
 
 **🙌 Contribution**
 
