@@ -19,7 +19,9 @@ ScriptMood-prediction/
 │── cv-transform.pkl           # Saved CountVectorizer (text → numbers)
 │── movie-genre-mnb-model.pkl  # Saved trained ML model
 │── static/                    # CSS, icons, videos
-│   └── styles.css
+│   ├── styles.css
+|   ├── logo-favicon.ico
+|   └── Watch the Video.mp4
 │── templates/                 # HTML frontend
 │   ├── index.html             # Input page
 │   └── result.html            # Prediction result page
@@ -153,6 +155,14 @@ Output (app):
 Predicted Genre: Romance
 ```
 ---
+
+### Demo output video
+
+
+https://github.com/user-attachments/assets/b66195ea-16af-40be-a2eb-b0ef50cffc0e
+
+
+
 
 ## 🙌 Contribution
 
