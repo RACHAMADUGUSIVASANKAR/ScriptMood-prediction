@@ -126,7 +126,7 @@ Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
    git push heroku main
    ```
 5. Open app: `heroku open`
-Reference video:https://youtu.be/aUW5GAFhu6s?si=TwAcja6qtxoDSWeE
+6. Reference video for heroku setup process: [video](https://youtu.be/aUW5GAFhu6s?si=TwAcja6qtxoDSWeE)
 ---
 
 ## 🧠 How the Model Works
@@ -178,6 +178,7 @@ Feel free to fork and enhance:
 **Sivasankar R**  
 AI & ML Engineering Student  
 GitHub: [RACHAMADUGUSIVASANKAR](https://github.com/RACHAMADUGUSIVASANKAR)
+Linkidin: [RACHAMADUGUSIVASANKAR](https://www.linkedin.com/in/sivasankar-rachamadugu/)
 
 ---
 
