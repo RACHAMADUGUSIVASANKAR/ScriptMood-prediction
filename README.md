@@ -75,7 +75,7 @@ review_text                       	genre
 
 ---
 
-###📊 Workflow Diagram
+### 📊 Workflow Diagram
 ```
  Kaggle Dataset (CSV) ──> Preprocessing & Training ──> Model + Vectorizer (.pkl)
         |                                                   |
