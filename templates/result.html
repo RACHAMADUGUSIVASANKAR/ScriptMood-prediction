@@ -55,6 +55,60 @@
         <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-green-600">Thriller</span></h1>
       {% endif %}
 
+
+<!-- 📊 Probability Bar Chart -->
+<div class="mt-8" data-aos="fade-up" data-aos-delay="300">
+  <h3 class="text-lg font-semibold text-gray-700 mb-3">Prediction Probabilities</h3>
+  <canvas id="probChart" width="400" height="250"></canvas>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('probChart');
+
+// Ensure genres is a list of strings
+const genres = {{ genres | tojson | safe }};
+const probs = {{ probs | tojson | safe }};
+const predictedIndex = {{ prediction }}; // index of predicted genre
+
+// Highlight predicted genre
+const colors = genres.map((_, idx) =>
+    idx === predictedIndex ? 'rgba(147, 51, 234, 0.8)' : 'rgba(203, 213, 225, 0.8)'
+);
+
+new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: genres, // ✅ x-axis shows genre names
+        datasets: [{
+            label: 'Probability (%)',
+            data: probs,
+            backgroundColor: colors,
+            borderColor: 'rgba(147, 51, 234, 1)',
+            borderWidth: 1,
+            borderRadius: 6
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'Probability (%)', color: '#555' }
+            }
+        },
+        plugins: {
+            legend: { display: false },
+            tooltip: {
+                callbacks: { label: ctx => ctx.parsed.y + '%' }
+            }
+        }
+    }
+});
+</script>
+
+
+
+
       <!-- Try Again Button -->
       <a href="/" 
          class="mt-6 inline-block px-6 py-3 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition" 
