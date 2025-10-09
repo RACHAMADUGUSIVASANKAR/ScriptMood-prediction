@@ -14,7 +14,7 @@
 ScriptMood-prediction/
 │── app.py                     # Flask web app
 │── requirements.txt           # Dependencies
-│── app.cpython-313.pyc # Compiled Python bytecode (auto-generated)
+│── app.cpython-313.pyc        # Compiled Python bytecode (auto-generated)
 │── Procfile                   # For deployment (Heroku)
 │── kaggle_movie_train.csv     # Training dataset (22k reviews)
 │── cv-transform.pkl           # Saved CountVectorizer (text → numbers)
