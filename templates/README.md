@@ -38,17 +38,17 @@ This page displays the predicted emotion or genre after the user submits their s
 - 🔗 **Footer Links**: Same as the input page for consistency.
 
 **Genre Mapping:**
-| Prediction Code | Genre         | Color Class       |
-|-----------------|---------------|-------------------|
-| 0               | Miscellaneous | `text-gray-700`   |
-| 1               | Action        | `text-red-600`    |
-| 2               | Adventure     | `text-orange-500` |
-| 3               | Comedy        | `text-yellow-500` |
-| 4               | Drama         | `text-purple-600` |
-| 5               | Horror        | `text-red-700`    |
-| 6               | Romance       | `text-pink-500`   |
-| 7               | Sci-Fi        | `text-blue-600`   |
-| 8               | Thriller      | `text-green-600`  |
+| Prediction Code | Genre         |
+|-----------------|---------------|
+| 0               | Miscellaneous | 
+| 1               | Action        | 
+| 2               | Adventure     | 
+| 3               | Comedy        | 
+| 4               | Drama         | 
+| 5               | Horror        | 
+| 6               | Romance       | 
+| 7               | Sci-Fi        | 
+| 8               | Thriller      | 
 
 ---
 

@@ -1,5 +1,5 @@
 
-# 🎬 ScriptMood – Emotion Prediction App
+# 🎬 ScriptEmotion – Emotion Prediction App
 
 - A Flask web application that predicts the genre of a movie based on its description or script snippet.  
 - It uses Machine Learning (Naive Bayes + CountVectorizer) trained on a Kaggle dataset of 22,000+ movie reviews.
@@ -154,11 +154,30 @@ Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
 Input (user):
 ```
-"A heartwarming love story set in Paris."
+"EXT. FOREST EDGE – DAY
+
+Pushpa Raj, a rugged laborer, stands tall, surveying the dense woods.
+
+PUSHPA
+(gritting teeth)
+Pushpa ante flower anukuntiva? Fire-u! (You think Pushpa is a flower? He's fire!)
+
+He strides forward, determination in his eyes.
+
+PUSHPA (V.O.)
+(reflective)
+Born without a surname, but I carved my name in fire.
+
+He approaches a group of smugglers, ready to claim his place.
+
+PUSHPA
+(commanding)
+I don't kneel. I rise."
 ```
 Output (app):
 ```
-Predicted Genre: Romance
+Predicted Genre: Action
+Prediction Probabilities (bar chat)
 ```
 ---
 
