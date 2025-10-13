@@ -184,9 +184,7 @@ Prediction Probabilities (bar chat)
 ### Demo output video
 
 
-https://github.com/user-attachments/assets/b66195ea-16af-40be-a2eb-b0ef50cffc0e
-
-
+https://github.com/user-attachments/assets/ed683699-87a0-4a6d-8830-5b9fba75fa5e
 
 
 ## 🙌 Contribution
