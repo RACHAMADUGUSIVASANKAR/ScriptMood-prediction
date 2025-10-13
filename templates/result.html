@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="utf-8">
-  <title>Movie Genre Predictor</title>
-  <link rel="shortcut icon" href="{{ url_for('static', filename='spam-favicon.ico') }}">
+  <title>ScriptEmotion Predictor</title>
+  <link rel="shortcut icon" href="{{ url_for('static', filename='logo-favicon.ico') }}">
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css2?family=Yatra+One&display=swap" rel="stylesheet">
@@ -28,103 +29,149 @@
     <h2 class="text-4xl font-extrabold text-gray-800">
       <span class="font-['Yatra_One'] text-purple-700">Emotion Predictor</span> for Movies
     </h2>
-    <p class="text-gray-600 mt-2">Here’s what we think your script belongs to 👇</p>
+    <p class="text-gray-600 mt-2">Here's what we think your script belongs to </p>
   </header>
 
   <!-- Prediction Card -->
   <main class="flex-grow flex items-center justify-center">
     <div class="w-full max-w-2xl bg-white rounded-2xl shadow-xl p-10 text-center" data-aos="zoom-in">
-      
+
       {% if prediction==0 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-gray-700">Miscellaneous</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-gray-700">Miscellaneous</span></h1>
       {% elif prediction==1 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-red-600">Action</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-red-600">Action</span></h1>
       {% elif prediction==2 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-orange-500">Adventure</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-orange-500">Adventure</span></h1>
       {% elif prediction==3 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-yellow-500">Comedy</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-yellow-500">Comedy</span></h1>
       {% elif prediction==4 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-purple-600">Drama</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-purple-600">Drama</span></h1>
       {% elif prediction==5 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-red-700">Horror</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-red-700">Horror</span></h1>
       {% elif prediction==6 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-pink-500">Romance</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-pink-500">Romance</span></h1>
       {% elif prediction==7 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-blue-600">Sci-Fi</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-blue-600">Sci-Fi</span></h1>
       {% elif prediction==8 %}
-        <h1 class="text-2xl font-bold">Predicted Mood: <span class="text-green-600">Thriller</span></h1>
+      <h1 class="text-2xl font-bold">Predicted Emotion: <span class="text-green-600">Thriller</span></h1>
       {% endif %}
 
 
-<!-- 📊 Probability Bar Chart -->
-<div class="mt-8" data-aos="fade-up" data-aos-delay="300">
-  <h3 class="text-lg font-semibold text-gray-700 mb-3">Prediction Probabilities</h3>
-  <canvas id="probChart" width="400" height="250"></canvas>
-</div>
+      <!--  Probability Bar Chart -->
+      <div class="mt-8" data-aos="fade-up" data-aos-delay="300">
+        <h3 class="text-lg font-semibold text-gray-700 mb-3">Prediction Probabilities</h3>
+        <canvas id="probChart" width="600" height="250"></canvas>
+      </div>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-const ctx = document.getElementById('probChart');
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      <script>
+        const ctx = document.getElementById('probChart');
 
-// Ensure genres is a list of strings
-const genres = {{ genres | tojson | safe }};
-const probs = {{ probs | tojson | safe }};
-const predictedIndex = {{ prediction }}; // index of predicted genre
+        // Ensure genres is a list of strings
+        const genres = {{ genres | tojson | safe }};
+        const probs = {{ probs | tojson | safe }};
+        const predictedIndex = {{ prediction }}; // index of predicted genre
 
-// Highlight predicted genre
-const colors = genres.map((_, idx) =>
-    idx === predictedIndex ? 'rgba(147, 51, 234, 0.8)' : 'rgba(203, 213, 225, 0.8)'
-);
+        // Highlight predicted genre
+        const colors = genres.map((_, idx) =>
+          idx === predictedIndex ? 'rgba(147, 51, 234, 0.8)' : 'rgba(203, 213, 225, 0.8)'
+        );
 
-new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: genres, // ✅ x-axis shows genre names
-        datasets: [{
-            label: 'Probability (%)',
-            data: probs,
-            backgroundColor: colors,
-            borderColor: 'rgba(147, 51, 234, 1)',
-            borderWidth: 1,
-            borderRadius: 6
-        }]
-    },
-    options: {
-        scales: {
-            y: {
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: genres, //  x-axis shows genre names
+            datasets: [{
+              label: 'Probability (%)',
+              data: probs,
+              backgroundColor: colors,
+              borderColor: 'rgba(147, 51, 234, 1)',
+              borderWidth: 1,
+              borderRadius: 6
+            }]
+          },
+          options: {
+            scales: {
+              x: {
+                ticks: {
+                  font: {
+                    size: 10,                   // Make font readable
+                    family: "'Inter', sans-serif"
+                  },
+                  callback: function (value, index, ticks) {
+                    // Truncate or wrap long labels if needed
+                    return this.getLabelForValue(value);
+                  },
+                  maxRotation: 0,                // No rotation
+                  minRotation: 0,                // No rotation
+                  autoSkip: false                // Show all labels
+                }
+              },
+              y: {
                 beginAtZero: true,
-                title: { display: true, text: 'Probability (%)', color: '#555' }
+                title: {
+                  display: true,
+                  text: 'Probability (%)',
+                  color: '#555',
+                  font: { size: 14 }
+                },
+                ticks: { font: { size: 14 } }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function (ctx) {
+                    return ctx.label + ': ' + ctx.parsed.y + '%';
+                  }
+                }
+              }
             }
-        },
-        plugins: {
-            legend: { display: false },
-            tooltip: {
-                callbacks: { label: ctx => ctx.parsed.y + '%' }
-            }
-        }
-    }
-});
-</script>
+          }
 
-
-
+        });
+      </script>
 
       <!-- Try Again Button -->
-      <a href="/" 
-         class="mt-6 inline-block px-6 py-3 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition" 
-         data-aos="fade-up" data-aos-delay="400">
-        🔄 Try Another Script
-      </a>
+      <a href="/"
+        class="mt-6 inline-block px-6 py-3 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition"
+        data-aos="fade-up" data-aos-delay="400">
+        Try Another Script
+      </a><br><br>
+      <p>
+        <b>Miscellaneous</b> - Content that doesn't fit neatly into any other genre. <br><br>
+
+        <b>Action</b> - Movies that focus on physical activity, stunts, fights, chases, explosions.<br><br>
+
+        <b>Adventure</b> - Films that emphasize exploration, journeys, discovering new places.<br><br>
+
+        <b>Comedy</b> - Designed to make the audience laugh, often using humor, satire. <br><br>
+
+        <b>Drama</b> - Focuses on character development, emotions, relationships, storytelling.<br><br>
+
+        <b>Horror</b> - Intended to scare, shock, or unsettle the audience. Includes monsters, supernatural elements, or
+        psychological terror.<br><br>
+
+        <b>Romance</b> - Focuses on love stories and relationships between characters.<br><br>
+
+        <b>Sci-Fi (Science Fiction)</b> - Explores futuristic concepts, advanced technology, space exploration, time travel.<br><br>
+
+        <b>Thriller</b> - Designed to create suspense, tension, or excitement. Often involves crime, mysteries, or high-stakes
+        situations.<br><br>
+      </p>
     </div>
   </main>
 
   <!-- Footer -->
   <footer class="text-center py-6 bg-white border-t shadow-inner" data-aos="fade-up" data-aos-delay="800">
     <div class="flex justify-center space-x-6 mb-3">
-      <a target="_blank" href="https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction" class="text-gray-700 hover:text-purple-600 transition">
+      <a target="_blank" href="https://github.com/RACHAMADUGUSIVASANKAR/ScriptMood-prediction"
+        class="text-gray-700 hover:text-purple-600 transition">
         <i class="fab fa-github fa-xl"></i>
       </a>
-      <a target="_blank" href="https://www.linkedin.com/in/sivasankar-rachamadugu/" class="text-gray-700 hover:text-purple-600 transition">
+      <a target="_blank" href="https://www.linkedin.com/in/sivasankar-rachamadugu/"
+        class="text-gray-700 hover:text-purple-600 transition">
         <i class="fab fa-linkedin fa-xl"></i>
       </a>
     </div>
@@ -132,4 +179,5 @@ new Chart(ctx, {
   </footer>
 
 </body>
+
 </html>
